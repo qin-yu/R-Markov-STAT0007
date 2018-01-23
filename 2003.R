@@ -6,8 +6,15 @@ Sys.setenv(LANG = "en")
 library("markovchain")
 library("MASS") # Now purely for converting decimal to fraction
 
+printFraction <- function(mc){
+    # To print the transition matrix in mc, a markovchain, with entries in fraction
+    # e.g call printFraction(HIVmc^10)
+    print(as.fractions(attributes(mc)$transitionMatrix))
+}
+
+
 # The HIV example is important and will be mentioned repeatedly:
-HIVstates <- c("high--", "medium", "low---")
+HIVstates <- c("high", "medium", "low")
 HIVmatrix <- matrix(c(0.9, 0.05, 0.05,
                       0.6, 0.25, 0.15,
                       0.25, 0.25, 0.5),
@@ -18,12 +25,14 @@ HIVmc = new("markovchain",
             states = HIVstates,
             byrow = TRUE,
             transitionMatrix = HIVmatrix,
-            name = "HIV progression")  # To perform matrix multiplication on HIVmc, use * 
+            name = "HIV progression")  # To perform matrix multiplication on HIVmc, use *
+print("The setting of HIV markov chain:")
+printFraction(HIVmc)
+
 initialState <- c(0.7, 0.2, 0.1)
 print("The initial state has been set as: ")
 print(initialState)
-print("The setting of HIV markov chain:")
-printFraction(HIVmc)
+
 
 # This transition matrix appears in both slide 2 and exercise 2:
 cw2matrix = matrix(c(1/2, 1/2, 0, 0,
@@ -39,17 +48,16 @@ printFraction(cw2mc)
 
 
 plotHIV <- function(n, t0, t){
+    # e.g. call plotHIV(20, "high", 19)
     simulated_data <- rmarkovchain(n = n, object = HIVmc, t0 = t0)
     print(simulated_data)
-    numeric_simulated_data <- (as.numeric(simulated_data == "low---")
+    numeric_simulated_data <- (as.numeric(simulated_data == "low")
         + as.numeric(simulated_data == "medium") * 2
-        + as.numeric(simulated_data == "high--") * 3)
+        + as.numeric(simulated_data == "high") * 3)
     t <- 0:t 
     plot(t, numeric_simulated_data,
          yaxt="n", type="o", ylab="State", xlab="Time",
          main="Simulation of the HIV Markov chain", col="blue" )
 }
 
-printFraction <- function(mc){
-    print(as.fractions(attributes(mc)$transitionMatrix))
-}
+
