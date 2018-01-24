@@ -44,7 +44,7 @@ low    45/56  5/56   3/28
 
 To compute the marginal probability at time 10, call:
 ```r
-initialState * HIVmc ^ 10
+> initialState * HIVmc ^ 10
 ```
 
 The chain in exercise 2 in called **cw2mc**, which has entries like 1/3. Some example calls:
