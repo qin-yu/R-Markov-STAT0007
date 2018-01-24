@@ -91,9 +91,6 @@ Also, it might be useful to verify a belief when a markov chain can be simulated
 [20] "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6"
 [39] "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6" "6"
 ```
-![Image 1 of plotMarkov(cw2q2, 1, 50)]
-(https://github.com/qin-yu/STAT2003-STAT3102-R/blob/master/images/cw2q2_1.jpg)
-![Image 2 of plotMarkov(cw2q2, 1, 50)]
-(https://github.com/qin-yu/STAT2003-STAT3102-R/blob/master/images/cw2q2_2.jpg)
-![Image 3 of plotMarkov(cw2q2, 1, 50)]
-(https://github.com/qin-yu/STAT2003-STAT3102-R/blob/master/images/cw2q2_3.jpg)
+![Image 1 of plotMarkov(cw2q2, 1, 50)](https://github.com/qin-yu/STAT2003-STAT3102-R/blob/master/images/cw2q2_1.png)
+![Image 2 of plotMarkov(cw2q2, 1, 50)](https://github.com/qin-yu/STAT2003-STAT3102-R/blob/master/images/cw2q2_2.png)
+![Image 3 of plotMarkov(cw2q2, 1, 50)](https://github.com/qin-yu/STAT2003-STAT3102-R/blob/master/images/cw2q2_3.png)
