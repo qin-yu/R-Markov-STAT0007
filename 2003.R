@@ -1,5 +1,5 @@
 # R code for STAT2003/STAT3102 course (2017/18)
-# Created - Jan 2018, last update - 23 Jan 2018
+# Created - Jan 2018, last update - 24 Jan 2018
 # by Qin Yu, qin.yu.15@ucl.ac.uk
 
 Sys.setenv(LANG = "en")
@@ -8,7 +8,8 @@ library("MASS") # Now purely for converting decimal to fraction
 print("----------------------------------------------------")
 
 printFraction <- function(mc){
-    # To print the transition matrix in mc, a markovchain, with entries in fraction
+    # CAUTION: very small numbers will be displayed as 0
+    # To print the transition matrix in mc, a markovchain, with entries displayed as fraction
     # e.g call printFraction(HIVmc^10)
     print(as.fractions(attributes(mc)$transitionMatrix))
 }
@@ -28,7 +29,7 @@ HIVmc = new("markovchain",
             transitionMatrix = HIVmatrix,
             name = "HIV progression")  # To perform matrix multiplication on HIVmc, use *
 print("The setting of HIV markov chain:")
-printFraction(HIVmc)
+print(HIVmc)
 
 initialState <- c(0.7, 0.2, 0.1)
 print("The initial state has been set as: ")
@@ -37,16 +38,14 @@ print("----------------------------------------------------")
 
 
 # Exercise Sheet 2:
-cw2matrix = matrix(c(1/2, 1/2, 0, 0,
+cw2q1matrix = matrix(c(1/2, 1/2, 0, 0,
                      1, 0, 0, 0,
                      0, 1/2, 1/3, 1/6,
                      0, 0, 0, 1), byrow = TRUE, nrow = 4)
-cw2mc = new("markovchain",
+cw2q1 = new("markovchain",
             byrow = TRUE,
-            transitionMatrix = cw2matrix,
+            transitionMatrix = cw2q1matrix,
             name = "CW2 Q1")
-cw2q1matrix = cw2matrix
-cw2q1 = cw2mc
 print("The setting of CW2 Q1")
 printFraction(cw2q1)
 
@@ -77,9 +76,9 @@ print("----------------------------------------------------")
 
 
 
-plotHIV <- function(n, t0){
+plotHIV <- function(t0, n){
     # Notice that the initial state is not on the output graph.
-    # e.g. call plotHIV(20, "low")
+    # e.g. call plotHIV("low", 20)
     simulated_data <- rmarkovchain(n = n, object = HIVmc, t0 = t0)
     print(simulated_data)
     numeric_simulated_data <- (as.numeric(simulated_data == "low")
@@ -87,14 +86,14 @@ plotHIV <- function(n, t0){
         + as.numeric(simulated_data == "high") * 3)
     t <- 1:n
     plot(t, numeric_simulated_data,
-         yaxt="n", type="o", ylab="State", xlab="Time",
-         main="Simulation of the HIV Markov chain", col="blue" )
+         yaxt = "n", type = "o", ylab = "State", xlab = "Time",
+         main = "Simulation of the HIV Markov chain", col = "blue")
 }
 
 
 plotMarkov <- function(object, t0, n){
     # To use this method make sure that the Markov chain has no state name.
-    # e.g. call plotHIV(20, "high", 19)
+    # e.g. call plotHIV(cw2q2, 1, 50)
     simulated_data <- rmarkovchain(n = n, object = object, t0 = t0)
     print(simulated_data)
     numeric_simulated_data <- as.numeric(simulated_data)
