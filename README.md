@@ -4,7 +4,18 @@ If you are so lazy that you don't even bother to read the intro/manual/code prov
 
 ## Getting Started
 This part is a very short introduction for users who run R on MacOS, not for users using RStudio, though I believe it doesn't make a big difference.
-### The easiest way to use it:
+
+Firstly, one needs to make sure the "markovchain" package has been installed on their machine. To install the package, launch R:
+```Shell
+$ r
+```
+then call install.packages("markovchain"):
+```r
+> install.packages("markovchain")
+```
+then follow the instruction.
+
+### The easiest way to use my code:
 - Download and place *2003.R* in the directory/folder
 - Go to that directory, launch Terminal.app and rename my code as *.rprofile* so it will be sourced everytime you launch R from this directory/folder. (In the latest version of MacOS one cannot rename a file to .rprofile in Finder.app)
 ```Shell
