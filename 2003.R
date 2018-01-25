@@ -77,7 +77,7 @@ print("----------------------------------------------------")
 
 
 plotHIV <- function(t0, n){
-    # Notice that the initial state is not on the output graph.
+    # Notice that the initial state is not plotted.
     # e.g. call plotHIV("low", 20)
     simulated_data <- rmarkovchain(n = n, object = HIVmc, t0 = t0)
     print(simulated_data)
@@ -88,18 +88,29 @@ plotHIV <- function(t0, n){
     plot(t, numeric_simulated_data,
          yaxt = "n", type = "o", ylab = "State", xlab = "Time",
          main = "Simulation of the HIV Markov chain", col = "blue")
+    axis(side = 2, at = c(1,2,3), labels = c("low", "medium", "high"))
 }
 
+valOfState <- function(object, s){
+    for(i in 1:length(states(object)))
+        if(states(object)[i] == s)
+            return(i)
+}
+
+numericStates <- function(object){
+    return(c(1:length(states(object))))
+}
 
 plotMarkov <- function(object, t0, n){
-    # To use this method make sure that the Markov chain has no state name.
     # e.g. call plotHIV(cw2q2, 1, 50)
     simulated_data <- rmarkovchain(n = n, object = object, t0 = t0)
-    print(simulated_data)
-    numeric_simulated_data <- as.numeric(simulated_data)
+    numeric_simulated_data <- NULL
+    for(i in 1:length(simulated_data))
+        numeric_simulated_data <- c(numeric_simulated_data, valOfState(object, simulated_data[i]))
     t <- 1:n
+    numeric_states <- numericStates(object)
     plot(t, numeric_simulated_data,
-         yaxt="n", type="o", ylab="State", xlab="Time",
-         main="Simulation of Markov chain", col="blue" )
-    axis(side=2, at=states(object), labels=TRUE)
+         yaxt = "n", type = "o", ylab = "State", xlab = "Time",
+         main = "Simulation of Markov chain", col = "blue" )
+    axis(side = 2, at = numeric_states, labels = states(object))
 }
