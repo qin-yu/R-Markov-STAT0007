@@ -75,6 +75,19 @@ printFraction(cw2q3)
 print("----------------------------------------------------")
 
 
+# Exercise Sheet 4:
+cw4q2matrix = matrix(c(1/4, 0, 1/2, 1/4,
+                       0, 1/5, 0, 4/5,
+                       0, 1, 0, 0,
+                       1/3, 1/3, 0, 1/3), byrow = TRUE, nrow = 4)
+cw4q2 = new("markovchain",
+            byrow = TRUE,
+            transitionMatrix = cw4q2matrix,
+            name = "CW4 Q2")
+print("The setting of CW4 Q2")
+printFraction(cw4q2)
+print("----------------------------------------------------")
+
 
 plotHIV <- function(t0, n){
     # Notice that the initial state is not plotted.
